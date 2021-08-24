@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+			window.onload = function (){
+				var url = "http://localhost:8080/hello/hello1";
+				var request = new XMLHttpRequest();
+				request.onload = function (){
+					if(request.status == 200){
+						displayContent(request.responseText);
+					}
+				}
+					request.open("GET",url,true);
+					request.send(null);
+			}
+			
+			function displayContent(content1) {
+				var p = document.getElementById("content");
+				p.innerHTML = content1;
+			}
+			function displayContent1(content) {
+				var p = document.getElementById("content1");
+				p.innerHTML = content;
+			}
+			
+		</script>
+	</head>
+	<body>
+		<p id="content">一个段落。</p>
+		<p id="content1">又是一个段落</p>
+		<button type="button" onclick="displayContent1('1');">点击这里</button>
+	</body>
+</html>

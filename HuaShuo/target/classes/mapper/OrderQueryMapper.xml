@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.huashuo.mapper.OrderQueryMapper">
+ <select id="findAll" resultType="com.huashuo.mapper.OrderQueryDto">
+       	SELECT * FROM  HuaShuoOrderQuery
+    </select>
+    
+    <insert id="insert" parameterType="com.huashuo.mapper.OrderQueryDto" >
+		INSERT INTO HuaShuoOrderQuery(id, name, model, price, quantity)
+		VALUES (#{id},#{name},#{model},#{price},#{quantity});
+    </insert>
+</mapper>

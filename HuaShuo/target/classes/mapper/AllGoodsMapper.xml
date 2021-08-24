@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.huashuo.mapper.AllGoodsMapper">
+	<insert id="insert" parameterType="com.huashuo.mapper.AllGoodsDto" >
+		INSERT INTO HUASHUOALLGOODS (id, name,model,price,inventoryquantity)
+		VALUES (#{id},#{name},#{model},#{price},#{inventoryquantity});
+    </insert> 
+    
+    <delete id="delete" parameterType="com.huashuo.mapper.AllGoodsDto" >
+    	DELETE FROM HUASHUOALLGOODS  WHERE ID = #{id};
+    </delete>
+    
+    <update  id="update" parameterType="com.huashuo.mapper.AllGoodsDto" >
+    	UPDATE HUASHUOALLGOODS  SET
+    	name= #{name},
+    	model= #{model},
+    	price= #{price},
+    	inventoryquantity= #{inventoryquantity} 
+    	WHERE ID= #{id};
+    </update>
+    
+	<select id="findAll" resultType="com.huashuo.mapper.ShoppingCartDto">
+       	SELECT * FROM  HUASHUOALLGOODS 
+    </select>
+</mapper>
