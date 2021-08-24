@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.huashuo.mapper.CustomerInputMapper">
+	<insert id="insert" parameterType="com.huashuo.mapper.CustomerInputDto" >
+		INSERT INTO HuaShuoCustomerInquiry (id, name,purchaseQuantity,purchasePrice,purchaseModel)
+		VALUES (#{id},#{name},#{purchaseQuantity},#{purchasePrice},#{purchaseModel});
+    </insert> 
+    
+    <delete id="delete" parameterType="com.huashuo.mapper.CustomerInputDto" >
+    	DELETE FROM HuaShuoCustomerInquiry  WHERE ID = #{id};
+    </delete>
+    
+    <update  id="update" parameterType="com.huashuo.mapper.CustomerInputDto" >
+    	UPDATE HuaShuoCustomerInquiry  SET
+    	name= #{name},
+    	purchaseQuantity= #{purchaseQuantity},
+    	purchasePrice= #{purchasePrice},
+    	purchaseModel= #{purchaseModel} 
+    	WHERE ID= #{id};
+    </update>
+    
+	<select id="findAll" resultType="com.huashuo.mapper.CustomerInputDto">
+       	SELECT * FROM  HuaShuoCustomerInquiry 
+    </select>
+</mapper>
