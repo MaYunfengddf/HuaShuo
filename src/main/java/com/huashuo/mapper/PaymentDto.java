@@ -41,6 +41,6 @@ public class PaymentDto {
 	
 	@Override
 	public String toString() {
-		return "{id = " + this.id + ", name = " + this.name + ", model = " + this.model + ", price = " + this.price +", quantity = " + this.quantity +"}\r\n";
+		return "{id = " + this.id + ", name = " + this.name + ", model = " + this.model + ", price = " + this.price +", quantity = " + this.quantity +"}\r\n<br>";
 	}
 }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>客户查询</title>
+		<link rel="stylesheet" href="../bootstrap-3.4.1/css/bootstrap.min.css">
+		<script src="../js/jquery-3.6.0.min.js"></script>
+		<script src="../bootstrap-3.4.1/js/bootstrap.min.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script src="../js/vue-resource.min.js"></script>
+		<script src="../js/rootPath.js"></script>
+		<script src="../js/customerQuery.js"></script>
+		<link rel="stylesheet" href="../css/customerQuery.css">
+	</head>
+	<body>
+		<div id="app">
+			<div class="in">
+				<table border="0">
+					<tr>
+						<td class="td0" width="650">账号</td>
+						<td class="td1" width="650">客户名字</td>
+					</tr>
+				</table>
+			</div>
+			
+			<template v-for="site in sites">
+				<div class="info warp">
+					<table border="0">
+						<tr class="demo" >
+							<td class="info-0" width="650">{{ site.accounta }}</td>
+							<td class="info_3" width="650">{{ site.name }} </td>
+						</tr>
+					</table>
+				</div>
+			</template>
+		</div>
+		<br><br><br>
+		<div class="col-md-13">
+			<p class="p2">我是有底线的</p>
+		<div>
+	</body>
+</html>

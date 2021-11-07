@@ -2,12 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.huashuo.mapper.OrderQueryMapper">
- <select id="findAll" resultType="com.huashuo.mapper.OrderQueryDto">
-       	SELECT * FROM  HuaShuoOrderQuery
+	<insert id="insert" parameterType="com.huashuo.mapper.OrderQueryDto" >
+		INSERT INTO HuaShuoOrderQuery(id, accountc, time, key)
+		VALUES (#{id},#{accountc},#{time},#{key});
+    </insert>
+    <delete id="delete" parameterType="com.huashuo.mapper.OrderQueryDto" >
+    	DELETE FROM HuaShuoOrderQuery  WHERE ID = #{id};
+    </delete>
+    
+    <update  id="update" parameterType="com.huashuo.mapper.OrderQueryDto" >
+    	UPDATE HuaShuoOrderQuery  SET
+    	<if test="accountc != null and accountc != ''">
+            accountc= #{accountc},
+        </if>
+    	<if test="key != null and key != ''">
+    		key= #{key}
+    	 </if>
+    	WHERE ID= #{id};
+    </update>
+ 	<select id="findAll" resultType="com.huashuo.mapper.OrderQueryDto">
+       	 select  a.id,a.accountc, a.time, a.key,
+				b.id,b.name,b.model,b.colour,b.size,b.price,b.images,b.quantity,b.type,b.processor,b.memory,b.harddisk
+
+				from HuaShuoOrderQuery a
+				left join HUASHUOALLGOODS b on a.key= b.id;
+    </select>
+    <select id="findAccountc" resultType="com.huashuo.mapper.OrderQueryDto">
+       	 select  a.id,a.accountc, a.time, a.key,
+				b.id,b.name,b.model,b.colour,b.size,b.price,b.images,b.quantity,b.type,b.processor,b.memory,b.harddisk
+
+				from HuaShuoOrderQuery  a
+				left join HUASHUOALLGOODS b on a.key= b.id
+				WHERE a.accountc LIKE '%${accountc}%';
+       
     </select>
     
-    <insert id="insert" parameterType="com.huashuo.mapper.OrderQueryDto" >
-		INSERT INTO HuaShuoOrderQuery(id, name, model, price, quantity)
-		VALUES (#{id},#{name},#{model},#{price},#{quantity});
-    </insert>
 </mapper>

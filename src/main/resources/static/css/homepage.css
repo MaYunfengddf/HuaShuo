@@ -1,0 +1,154 @@
+		/* 商城主页开始 */
+		.nav{
+			
+			height: 30px;
+			
+			background-color: #f1f1f1;
+			
+		}
+		.warp{
+			
+			width: 1300px;
+			
+			margin: 0px auto;
+			
+		}
+		
+		.nav_ul1,.nav_ul2 li{
+			
+			float: left;
+			
+		}
+		
+		.nav_ul1 li{
+			
+			float: left;
+			
+			line-height: 25px;
+			
+			margin-right: 20px;
+		}
+		
+		.nav_ul1 a,.nav_ul2 a,.nav_ul2 span{
+			
+			font-size: 12px;
+			
+			color: gray;
+			
+		}
+		
+		.nav_ul2{
+			
+			float: right;
+			
+		}
+		.nav_ul2 li,.nav_ul2 span{
+			
+			line-height: 25px;
+			
+			margin-left: 50px;
+			
+		}
+		.nav a:hover{
+			
+			color:#00ff00;
+			
+		}
+		/*搜索框开始*/
+		.search .p1{
+			font-size: 40px;
+			  text-align: center;
+			color: #ff0000;
+		}
+		.search{
+			
+			margin-top: 10px;
+			
+		}
+		
+		.search img{
+			/*清除之前的样式*/
+			clear: both;
+			
+			float: left;
+			
+		}
+		
+		.search_div{
+			
+			float: right;
+			
+			margin-top: 30px;
+			
+		}
+		.search_text{
+			
+			width: 265px;
+			
+			height: 30px;
+			
+			
+			border: 3px solid #aaffff;
+			
+			position: relative;
+			
+			left: 4px;
+			
+			top: 0px;
+		}
+		
+		.search_but{
+			
+			width: 51px;
+			
+			height: 30px;
+			
+			background-color: #aa00ff;
+			
+			border: 0px;
+			
+			color: #FFFFFF;
+			
+		}
+		
+		
+		/* 主页循环播放图片 */
+		* { padding:0; margin:0;}       /*设置所有对像的内边距为0*/
+		
+		body { text-align:center;}      /*设置页面居中对齐*/
+		
+		#photo-list {
+		margin:10px auto;    border:1px  #ccc;  } 
+		
+		#photo-list ul { list-style:none;}
+		
+		 #photo-list img { border:1px solid #ddd; background:#fff; padding:2px;} 
+		
+		/* 商品展示 */
+		table{
+			margin-left:100px;
+			margin-right:100px;
+		}
+		div.img {
+			margin: 5px;
+			border: 1px solid #ccc;
+			float: left;
+			width: 247px;
+			
+		}
+		div.img:hover {
+			border: 1px solid #777;
+		}
+
+		div.img img {
+			width:100%;
+			height: 70%;
+		}
+		
+		.col-md-13{
+			border: 1px solid #ffff00;
+		}
+		.p2{
+			color:#00ff00;
+			font-size:25px;
+		}

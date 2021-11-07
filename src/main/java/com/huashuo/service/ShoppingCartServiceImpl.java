@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,53 +25,56 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
 	private ShoppingCartMapper shoppingCartMapper;
 	
 		//购物车 增
-		public String input(String name,String model,String price,String quantity) {
+		public boolean input(String accountb,String key) {
+		
+			
 			ShoppingCartServiceImpl shoppingCartServiceImpl = new ShoppingCartServiceImpl();
 			String id = shoppingCartServiceImpl.idPrice();
+			//自动获取当前时间
+			String time = shoppingCartServiceImpl.time();
 			
 			ShoppingCartDto shoppingCart = new ShoppingCartDto();
 			shoppingCart.setId(id);
-			shoppingCart.setName(name);
-			shoppingCart.setModel(model);
-			shoppingCart.setPrice(price);
-			shoppingCart.setQuantity(quantity);
+			shoppingCart.setAccountb(accountb);
+			shoppingCart.setTime(time);
+			shoppingCart.setKey(key);
+			shoppingCart.setNum("1");
 			
 			int cart = shoppingCartMapper.insert(shoppingCart);
 			System.out.println(cart);
-			return "添加成功:" + cart + "条信息";
+			return true;
 		}
 		
 		//购物车 删
-		public String delete(String id) {
+		public boolean delete(String id) {
 			ShoppingCartDto shoppingCart = new ShoppingCartDto();
 			shoppingCart.setId(id);
 			
 			int cart = shoppingCartMapper.delete(shoppingCart);
 			System.out.println(cart);
-			return "删除成功:" + cart + "条信息";
+			return true;
 		}
 		
 		//购物车 改
-		public String modify(String name,String model,String price,String quantity,String id) {
+		public boolean modify(String accountb,String key,String id) {
 			ShoppingCartDto shoppingCart = new ShoppingCartDto();
-			shoppingCart.setName(name);
-			shoppingCart.setModel(model);
-			shoppingCart.setPrice(price);
-			shoppingCart.setQuantity(quantity);
+			shoppingCart.setAccountb(accountb);
+			shoppingCart.setKey(key);
 			shoppingCart.setId(id);
 			
 			int cart = shoppingCartMapper.update(shoppingCart);
 			System.out.println(cart);
-			return "修改成功:" + cart + "条信息";
+			return true;
 		}
 		
 		//购物车 查
-		public String query() {
-			List<ShoppingCartDto> cart = shoppingCartMapper.findAll();
-			System.out.println(cart);
+		public List<ShoppingCartDto> query(String accountb) {
+			ShoppingCartDto shoppingCart = new ShoppingCartDto();
+			shoppingCart.setAccountb(accountb);
 			
-			String str = String.valueOf(cart);
-			return str;
+			List<ShoppingCartDto> cart = shoppingCartMapper.findAll(shoppingCart);
+			System.out.println(cart);
+			return cart;
 		}
 		
 		//获取ID并实现自增
@@ -86,13 +91,19 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
 				}
 				int id2 = Integer.valueOf(id);
 				int id3 = ++id2;
-				
 				String id4 = String.valueOf(id3);
-				
 				return id4;
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			return null;
+		}
+		
+		//自动获取当前时间
+		public String time() {
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+			String time = df.format(new Date());
+			 System.out.println("自动获取当前时间" + time);// new Date()为获取当前系统时间
+			 return time;
 		}
 }

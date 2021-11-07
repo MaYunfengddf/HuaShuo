@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>购物车</title>
+		<link rel="stylesheet" href="../bootstrap-3.4.1/css/bootstrap.min.css"><!-- 框架 -->
+		<script src="../js/jquery-3.6.0.min.js"></script><!-- 基础包 -->
+		<script src="../bootstrap-3.4.1/js/bootstrap.min.js"></script>
+		<script src="../js/vue.min.js"></script><!-- vue发送请求包 -->
+		<script src="../js/vue-resource.min.js"></script><!-- vue发送请求包 -->
+		<script src="../js/rootPath.js"></script>
+		<script src="../js/ShoppingCat.js"></script>
+		<link rel="stylesheet" href="../css/ShoppingCat.css">
+		
+	</head>
+	<body>
+		<div id="app">
+			<!-- 头 导航开始-->
+		  
+			<div class="nav">
+		  	
+		  	
+				<div class="warp">
+		  	 	
+					<ul class="nav_ul1">
+					<li><a href=""><i class="iconfont">&#xe6d3;</i> 华硕首页</a></li>
+					</ul>
+				
+				
+					<ul class="nav_ul2">
+						<li><a href="">我的订单</a><span>|</span></li>
+					</ul>
+		  	 	
+				</div>
+		  	
+		  	
+		  	
+			</div>
+		  
+		
+			<!--导航结束-->
+			
+			<!--搜索框开始-->
+			<div class="search">
+			
+				<div class="warp">
+					<table border="0">
+						<tr>
+							<td width="400"><img src="../images/huashuo09.png" width="210px" height="85px"/></td>
+						
+							<td width="400"><p class="p1"> 我的购物车 </p></td>
+						</tr>
+					</table>
+				</div>
+			
+			</div>
+		
+			<!--搜索框结束-->
+			<br>
+		  
+			<!--中  商品内容 -->
+		
+			<div class="in">
+				<table border="0">
+					<tr>
+						<td width="100">
+							<input type="checkbox" v-model="isAll" @change="checkAll"/>
+							全选
+						</td>
+						<td width="550">商品信息</td>
+						<td width="100">颜色</td>
+						<td width="100">处理器</td>
+						<td width="75">单价</td>
+						<td width="150">数量</td>
+						<td width="200">加入时间</td>
+						<td width="100">操作</td>
+					</tr>
+				</table>
+			</div>
+			
+			<template v-for="(v,i) in lists" ::key="v.id">
+				<div class="info warp">
+					<table border="0">
+						<tr class="demo">
+							<td class="info_1" width="50"><input type="checkbox" v-model="checkGroup" :value="v" @change="checkOne"/>
+							<td class="info_2" width="200"> <img v-bind:src="v.images" height="100px"/> </td>
+							<td class="info_2" width="400">{{ v.name }}-{{ v.model }}-{{ v.size}}-{{ v.type}}</td>
+							<td class="info_3" width="100">{{ v.colour }} </td>
+							<td class="info_4" width="100">{{ v.processor}}<br>{{ v.memory }}<br>{{ v.harddisk }} </td>
+							<td class="info_5" width="75">{{ v.price }}</td>
+							<td class="info_6" width="150">
+								<button @click="v.num--" :disabled="v.num===1">-</button> {{v.num}}
+								<button @click="v.num++" :disabled="v.num===5">+</button>
+							</td>
+							<td width="200">
+								<a class="a5" >已到我的关注</a><br>
+								<a class="a6" >{{ v.time }} 加入时间</a>
+							</td>
+							<td  width="100"><button @click="del(i,v.id,v.cat)">删除</button></td>
+						</tr>
+					</table>
+				</div>
+			</template>
+			
+			<!-- 尾  结算 -->
+			<div class="balance warp">
+				<table border="0">
+				   <tr class="balance_tr2">
+					   <td width="1150"><td>
+				   	 <td width="150">
+						
+						 <div>总额：{{sum()}}</div>
+					 </td>
+				   	 <td class="td1" width="200">
+				   	 	<button type="button" class="btn btn-info col-xs-6" v-on:click="money">去结算</button>
+				   	 </td>
+				   	
+				   </tr>
+				  
+				</table>
+			</div>
+			<div class="balance2">
+				<p>选中值</p>
+				<p>{{checkGroup}}</p>
+			</div>
+		</div>
+		<br><br>
+	</body>
+</html>

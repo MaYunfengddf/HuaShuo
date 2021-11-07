@@ -1,0 +1,27 @@
+		h3{
+			text-align: center;
+			font-size: 40px;
+			color: #c60000;
+		}
+		.p1{
+			font-size: 30px;
+			text-align: center;
+			color: #00aaff;
+		}
+		.p2{
+			font-size: 20px;
+			text-align: center;
+			color: #a28aff;
+		}
+		.a1{
+			font-size: 20px;
+			color: #00aaff;
+		}
+		.col-md-13{
+			border: 1px solid #00ffff;
+			text-align:center;
+		}
+		.p3{
+			color:#00ff00;
+			font-size:20px;
+		}

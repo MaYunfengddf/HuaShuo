@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>全部商品管理页面</title>
+		<link rel="stylesheet" href="../bootstrap-3.4.1/css/bootstrap.min.css">
+		<script src="../js/jquery-3.6.0.min.js"></script>
+		<script src="../bootstrap-3.4.1/js/bootstrap.min.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script src="../js/vue-resource.min.js"></script>
+		<script src="../js/rootPath.js"></script>
+		<script src="../js/AllGoods.js"></script>
+		<link rel="stylesheet" href="../css/AllGoods.css">
+	</head>
+	<body>
+		<!-- http://localhost:8080/html/administrators.html -->
+		<h3>华硕全部商品管理系统</h3>
+		
+		<div style="height:100px"></div>
+		<p class="p1">全部商品维护</p>
+		<div class="col-xs-2"></div>
+		<div class="panel panel-default col-xs-8" id="app">
+			<div class="panel-body">
+				<p class="p2">全部商品:增</p>
+				<p >{{ message }}</p>
+				<br>
+				<form class="bs-example bs-example-form" role="form" id="login" name="login"> 
+					<div class="input-group">
+						<span class="input-group-addon">商品名称:</span>
+						<input type="text" class="form-control" name="name" v-model="name">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品型号:</span>
+						<input type="text" class="form-control" name="model" v-model="model">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品颜色:</span>
+						<input type="text" class="form-control" name="colour" v-model="colour">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品尺寸:</span>
+						<input type="text" class="form-control" name="size" v-model="size">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品价格:</span>
+						<input type="text" class="form-control" name="price" v-model="price">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品图片:</span>
+						<input type="text" class="form-control" name="images" v-model="images">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品库存:</span>
+						<input type="text" class="form-control" name="quantity" v-model="quantity">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品定位:</span>
+						<input type="text" class="form-control" name="type" v-model="type">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品处理器:</span>
+						<input type="text" class="form-control" name="processor" v-model="processor">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品内存:</span>
+						<input type="text" class="form-control" name="memory" v-model="memory">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品硬盘:</span>
+						<input type="text" class="form-control" name="harddisk" v-model="harddisk">
+					</div>
+					<br>
+					<span class="col-xs-10"></span>
+					<button type="button" class="btn btn-primary col-xs-2" v-on:click="login">提交</button>
+					
+					
+					<br><br><br><br><br>
+					
+					
+					<p class="p2">全部商品:删</p>
+					<p >{{ message2 }}</p>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品ID:</span>
+						<input type="text" class="form-control" name="harddisk" v-model="id">
+					</div>
+					<br>
+					<span class="col-xs-10"></span>
+					<button type="button" class="btn btn-primary col-xs-2" v-on:click="login2">删除</button>
+					
+					
+					<br><br><br><br><br>
+					
+					
+					<p class="p2">全部商品:改</p>
+					<p >{{ message3 }}</p>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品名称:</span>
+						<input type="text" class="form-control" name="name1" v-model="name1">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品型号:</span>
+						<input type="text" class="form-control" name="model1" v-model="model1">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品颜色:</span>
+						<input type="text" class="form-control" name="colour1" v-model="colour1">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品尺寸:</span>
+						<input type="text" class="form-control" name="size1" v-model="size1">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品价格:</span>
+						<input type="text" class="form-control" name="price1" v-model="price1">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品图片:</span>
+						<input type="text" class="form-control" name="images1" v-model="images1">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品库存:</span>
+						<input type="text" class="form-control" name="quantity1" v-model="quantity1">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品定位:</span>
+						<input type="text" class="form-control" name="type1" v-model="type1">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品处理器:</span>
+						<input type="text" class="form-control" name="processor1" v-model="processor1">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品内存:</span>
+						<input type="text" class="form-control" name="memory1" v-model="memory1">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品硬盘:</span>
+						<input type="text" class="form-control" name="harddisk1" v-model="harddisk1">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">商品ID:</span>
+						<input type="text" class="form-control" name="id1" v-model="id1">
+					</div>
+					<br>
+					<span class="col-xs-10"></span>
+					<button type="button" class="btn btn-primary col-xs-2" v-on:click="login3">修改</button>
+					
+					
+					<br><br><br><br><br>
+					
+					<p class="p2">全部商品:查</p>
+					<br>
+					<span class="col-xs-10"></span>
+					<button type="button" class="btn btn-info col-xs-2" v-on:click="regis">查询</button>
+				</form>
+			</div>
+			<br><br><br><br><br>
+			<div class="col-md-13">
+				<p class="p3">我是有底线的</p>
+			<div>
+		</div>
+	</body>
+</html>
+

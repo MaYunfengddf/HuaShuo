@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>结算页面</title>
+		<link rel="stylesheet" href="../bootstrap-3.4.1/css/bootstrap.min.css">
+		<script src="../js/jquery-3.6.0.min.js"></script>
+		<script src="../bootstrap-3.4.1/js/bootstrap.min.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script src="../js/vue-resource.min.js"></script>
+		<script src="../js/rootPath.js"></script>
+		<script src="../js/settlement.js"></script>
+		<link rel="stylesheet" href="../css/settlement.css">
+	</head>
+	<body>
+		<div id="app" class="col-md-13">
+			<table border="1">
+				<tr>
+					<td>
+						<template v-for="si in ass">
+							<a v-on:click="regis(si.id)">
+							<div class="img">
+									收件人姓名:{{ si.name }}<br>
+									{{ si.address }}
+									{{ si.phone }}
+							</div>
+							</a>
+						</template>
+					</td>
+				</tr>
+			</table>
+			
+			<!-- 打开弹窗按钮 -->
+			<button class="col-xs-offset-2 col-xs-1" id="myBtn">添加收件地址</button>
+			<a class="col-xs-offset-7 col-xs-2" v-on:click="maintain">管理收货地址</a>
+			<!-- 弹窗 -->
+			<div id="myModal" class="modal">
+			  <!-- 弹窗内容 -->
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<span class="close">&times;</span>
+						<h3 class="panel-title">添加地址</h3>
+					</div>
+					<div class="panel-body">
+						<div class="panel-body">
+							<p >{{ message }}</p>
+							<br>
+							<form class="bs-example bs-example-form" role="form" id="login" name="login"> 
+								<div class="input-group">
+									<span class="input-group-addon">收件人手机号:</span>
+									<input type="text" class="form-control" name="phone" v-model="phone">
+								</div>
+								<br>
+								<div class="input-group">
+									<span class="input-group-addon">收件人地址:</span>
+									<input type="text" class="form-control" name="address" v-model="address">
+								</div>
+								<br>
+								<div class="input-group">
+									<span class="input-group-addon">收件人名字:</span>
+									<input type="text" class="form-control" name="name" v-model="name">
+								</div>
+								<br>
+								<span class="col-xs-10"></span>
+								<button type="button" class="btn btn-primary col-xs-2" v-on:click="login">添加新地址</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<template v-for="sist2 in sites">
+				<div class="in">
+					<div class="info warp">
+						<table border="0">
+							<tr class="demo">
+								<td class="info_4"  rowspan="4"> <img v-bind:src="sist2.images" height="125px"/> </td>
+							</tr>
+							<tr class="demo">
+								<td class="info_5"  width="1200" colspan="4">{{ sist2.name2 }}-{{ sist2.model }}-{{ sist2.size}}-{{ sist2.type}}</td>
+							</tr>
+							<tr class="demo">
+								<td class="info_6"  width="300">处理器:{{ sist2.processor}}</td>
+								<td class="info_6"  width="300">内存:{{ sist2.memory }}</td>
+								<td class="info_6"  width="300">硬盘:{{ sist2.harddisk }}</td>
+								<td class="info_6"  width="300">颜色:{{ sist2.colour }} </td>
+							</tr>
+							<tr class="demo">
+								<td class="info_7"  width="1200" colspan="4">价格:{{ sist2.price }}</td>
+							</tr>
+						</table>
+					</div>
+					<table border="1">
+					<tr class="demo">
+						<td class="info_8"  width="650" >配送方式:</td>
+						<td class="info_9"  width="650" >{{ sist2.express }}</td>
+					</tr>
+					<tr class="demo">
+						<td class="info_10" width="650" >配送时间</td>
+						<td class="info_11" width="650" >{{ time }}</td>
+					</tr>
+					<tr class="demo">
+						<td class="info_12" colspan="2">数量:{{ sist2.num }}* 单价:{{sist2.price}}</td>
+					</tr>
+					</table>
+				</div>
+			</template>
+			<br><br><br>
+			
+			<div class="col-md-14">
+				<span class="col-xs-7"></span>
+				<p class="col-xs-2" id="p1">合计金额:{{sum()}}</p>
+				<span class="col-xs-1"></span>
+				<button type="button" class="btn btn-danger col-xs-1" v-on:click="regis2()">付款</button>
+			<div>
+				
+			<br><br><br>
+			<div class="col-md-15">
+				<p class="p2">我是有底线的</p>
+			<div>
+		</div>
+	</body>
+</html>

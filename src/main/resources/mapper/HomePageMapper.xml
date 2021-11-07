@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.huashuo.mapper.HomePageMapper">
+	<insert id="insert" parameterType="com.huashuo.mapper.HomePageDto" >
+		INSERT INTO HOMEPAGE (id, recommend)
+		VALUES (#{id},#{recommend});
+    </insert> 
+    
+    <delete id="delete" parameterType="com.huashuo.mapper.HomePageDto" >
+    	DELETE FROM HOMEPAGE  WHERE ID = #{id};
+    </delete>
+    
+    
+    <update  id="update" parameterType="com.huashuo.mapper.HomePageDto" >
+    	UPDATE HOMEPAGE  SET
+    	recommend = #{recommend}
+    	WHERE ID = #{id};
+    </update>
+    
+	<select id="findAll" resultType="com.huashuo.mapper.HomePageDto">
+       	select  a.id as home, a.recommend,
+				b.id,b.name,b.model,b.colour,b.size,b.price,b.images,b.quantity,b.type,b.processor,b.memory,b.harddisk
+
+				from HOMEPAGE a
+				left join HUASHUOALLGOODS b on a.recommend= b.id;
+    </select>
+    
+    <select id="allQuery" resultType="com.huashuo.mapper.HomePageDto">
+      	SELECT * FROM HUASHUOALLGOODS 
+      		WHERE name LIKE '%${query}%'
+      		OR model LIKE '%${query}%' 
+      		OR colour LIKE '%${query}%'
+      		OR size LIKE '%${query}%' 
+      		OR price LIKE '%${query}%'
+      		OR type LIKE '%${query}%' 
+      		OR processor LIKE '%${query}%'
+      		OR memory LIKE '%${query}%' 
+      		OR harddisk LIKE '%${query}%';
+      		
+    </select>
+</mapper>

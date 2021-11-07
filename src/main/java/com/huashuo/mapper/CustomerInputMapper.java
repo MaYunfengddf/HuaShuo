@@ -10,4 +10,6 @@ public interface CustomerInputMapper {
 	public int delete(CustomerInputDto customerInputDto);
 	public int update(CustomerInputDto customerInputDto);
 	public List<CustomerInputDto> findAll();
+	public List<CustomerInputDto> findAll2(CustomerInputDto customerInputDto);
+	public List<CustomerInputDto> findAll3();
 }

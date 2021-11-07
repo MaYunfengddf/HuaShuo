@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>华硕全部商品筛选</title>
+		<link rel="stylesheet" href="../bootstrap-3.4.1/css/bootstrap.min.css">
+		<script src="../js/jquery-3.6.0.min.js"></script>
+		<script src="../bootstrap-3.4.1/js/bootstrap.min.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script src="../js/vue-resource.min.js"></script><!--Git 或post 请求需要引用 -->
+		
+		<script src="../js/rootPath.js"></script>
+		<link rel="stylesheet" href="../css/AllGoodsQuery.css">
+		<script src="../js/AllGoodsQuery.js"></script>
+		
+		
+	</head>
+	<body>
+		<!-- http://localhost:8080/html/AllGoodsQuery.html -->
+		<div id="app" class="col-md-12">
+			<div class="choose">
+				<ul>
+						<li>
+							<h2 colspan="5">华硕全部商品筛选</h2>
+						</li>
+						<li>
+							<td><strong>--查询--</strong>
+							<p class="p1" v-on:click="price1()">1~4999</p>
+							<p class="p1" v-on:click="price2()">5000~7999</p>
+							<p class="p1" v-on:click="price3()">8000~11999</p>
+							<p class="p1" v-on:click="price4()">12000+</p></td>
+						</li>
+						<li>
+							<td><strong>--型号--</strong>
+							<p class="p1" v-on:click="model()">灵耀 14S</p>
+							<p class="p1" v-on:click="model1()">VivoBook15</p>
+							<p class="p1" v-on:click="model2()">天选2</p>
+							<p class="p1" v-on:click="model5()">Redmibook</p>
+							<p class="p1" v-on:click="model6()">adolbook</p>
+							<p class="p1" v-on:click="model7()">MateBook</p>
+							<p class="p1" v-on:click="model8()">Redmibook</p>
+							<p class="p1" v-on:click="model9()">Pro X 15</p></td>
+						</li>
+						<li>
+							<strong>--品牌--</strong></td>
+							<p class="p1" v-on:click="greet()">华硕</p>
+							<p class="p1" v-on:click="greet2()">小米</p>
+							<p class="p1" v-on:click="greet3()">华为</p>
+						</li>
+				</ul>
+			</div>
+			<br><br><br><br>
+			<!-- 商品 -->
+			<table border="1">
+			<tr>
+				<td>
+					<template v-for="site in sites">
+						<div class="img col-xs-6 col-sm-4 col-md-3 " style="height: 280px;">
+							<a target="_blank" href="//static.runoob.com/images/demo/demo4.jpg">
+							  <img v-bind:src="site.images" alt="图片文本描述" width="300" height="200">
+							</a>
+							<div class="desc">
+								{{ site.name }}
+								{{ site.model }}<br>
+								价格:{{ site.price }}<br>
+								<span class="col-xs-8"></span>
+								<button type="button" class="btn btn-danger col-xs-4" @click="login(site.id)">+购物车</button>
+							</div>
+						</div>
+					</template>
+				</td>
+			</tr>
+			</table>
+			<div class="col-md-13">
+				<p class="p5">我是有底线的</p>
+			<div>
+		<div>
+	</body>
+</html>

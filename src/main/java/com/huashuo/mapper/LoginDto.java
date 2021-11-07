@@ -1,10 +1,12 @@
 package com.huashuo.mapper;
 
 public class LoginDto {
-private static final long serialVersionUID = 683169959697444795L;
 	
 	private String account;
 	private String password;
+	
+	private String manageAccount;
+	private String managePassword;
 	
 	public String getAccount() {
 		return account;
@@ -19,8 +21,21 @@ private static final long serialVersionUID = 683169959697444795L;
 		this.password = password;
 	}
 
+	public String getManageAccount() {
+		return manageAccount;
+	}
+	public void setManageAccount(String manageAccount) {
+		this.manageAccount = manageAccount;
+	}
+	public String getManagePassword() {
+		return managePassword;
+	}
+	public void setManagePassword(String managePassword) {
+		this.managePassword = managePassword;
+	}
 	@Override
 	public String toString() {
-		return "{id = " + this.account + ", name = " + this.password + "}";
+		return "{account = " + this.account + ", password = " + this.password + 
+				"manageAccount = " + this.manageAccount + ", managePassword = " + this.managePassword +"}";
 	}
 }

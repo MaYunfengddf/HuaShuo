@@ -3,8 +3,8 @@
 
 <mapper namespace="com.huashuo.mapper.AllGoodsMapper">
 	<insert id="insert" parameterType="com.huashuo.mapper.AllGoodsDto" >
-		INSERT INTO HUASHUOALLGOODS (id, name,model,price,inventoryquantity)
-		VALUES (#{id},#{name},#{model},#{price},#{inventoryquantity});
+		INSERT INTO HUASHUOALLGOODS (id,name,model,colour,size,price,images,quantity,type,processor,memory,harddisk)
+		VALUES (#{id},#{name},#{model},#{colour},#{size},#{price},#{images},#{quantity},#{type},#{processor},#{memory},#{harddisk});
     </insert> 
     
     <delete id="delete" parameterType="com.huashuo.mapper.AllGoodsDto" >
@@ -12,15 +12,54 @@
     </delete>
     
     <update  id="update" parameterType="com.huashuo.mapper.AllGoodsDto" >
-    	UPDATE HUASHUOALLGOODS  SET
-    	name= #{name},
-    	model= #{model},
-    	price= #{price},
-    	inventoryquantity= #{inventoryquantity} 
+    	UPDATE HUASHUOALLGOODS  SET	
+    	<if test="name != null and name != ''">
+            name= #{name},
+        </if>
+        <if test="model != null and model != ''">
+    		model= #{model},
+    	</if>
+    	<if test="colour != null and colour != ''">
+    		colour= #{colour},
+    	</if>
+    	<if test="size != null and size != ''">
+    		size= #{size},
+    	</if>
+    	<if test="price != null and price != ''">
+    		price= #{price},
+    	</if>
+    	<if test="images != null and images != ''">
+    		images= #{images},
+    	</if>
+    	<if test="quantity != null and quantity != ''">
+    		quantity= #{quantity},
+    	</if>
+    	<if test="type != null and type != ''">
+    		type= #{type},
+    	</if>
+    	<if test="processor != null and processor != ''">
+    		processor= #{processor},
+    	</if>
+    	<if test="memory != null and memory != ''">
+    		memory= #{memory},
+    	</if>
+    	<if test="harddisk != null and harddisk != ''">
+    		harddisk= #{harddisk}
+    	</if>
     	WHERE ID= #{id};
+    	
     </update>
     
-	<select id="findAll" resultType="com.huashuo.mapper.ShoppingCartDto">
+    
+	<select id="findAll" resultType="com.huashuo.mapper.AllGoodsDto">
        	SELECT * FROM  HUASHUOALLGOODS 
+    </select>
+    
+    <select id="findAll2" resultType="com.huashuo.mapper.AllGoodsDto">
+    select b.id,b.name,b.model,b.colour,b.size,b.price,b.images,b.quantity,b.type,b.processor,b.memory,b.harddisk,
+				c.id,c.hard,c.num
+				from HUASHUOALLGOODS b
+				left join huashuonum  c on b.harddisk= c.hard
+					WHERE b.ID = #{id};
     </select>
 </mapper>

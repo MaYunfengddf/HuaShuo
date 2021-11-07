@@ -3,8 +3,9 @@
 
 <mapper namespace="com.huashuo.mapper.ShoppingCartMapper">
 	<insert id="insert" parameterType="com.huashuo.mapper.ShoppingCartDto" >
-		INSERT INTO HUASHUOSHOPPINGCART (id, name,model,price,quantity)
-		VALUES (#{id},#{name},#{model},#{price},#{quantity});
+		INSERT INTO HUASHUOSHOPPINGCART (id,accountb,time,key,num)
+		VALUES (#{id},#{accountb},#{time},#{key},#{num});
+		
     </insert> 
     
     <delete id="delete" parameterType="com.huashuo.mapper.ShoppingCartDto" >
@@ -13,14 +14,17 @@
     
     <update  id="update" parameterType="com.huashuo.mapper.ShoppingCartDto" >
     	UPDATE HUASHUOSHOPPINGCART  SET
-    	name= #{name},
-    	model= #{model},
-    	price= #{price},
-    	quantity= #{quantity} 
+    	accountb= #{accountb},
+    	key= #{key}
     	WHERE ID= #{id};
     </update>
     
 	<select id="findAll" resultType="com.huashuo.mapper.ShoppingCartDto">
-       	SELECT * FROM  HUASHUOSHOPPINGCART 
+       	  select  a.id as cat,a.accountb, a.time, a.key,a.num,
+				b.id,b.name,b.model,b.colour,b.size,b.price,b.images,b.quantity,b.type,b.processor,b.memory,b.harddisk
+
+				from HUASHUOSHOPPINGCART a
+				left join HUASHUOALLGOODS b on a.key= b.id
+				WHERE a.accountb LIKE '%${accountb}%';
     </select>
 </mapper>

@@ -12,46 +12,51 @@ public class CommoditySalesController {
 
 	@Autowired
 	private SalesRecordService salesRecordService;
-	/**SalesRecordDto
-	 * 全部商品销售记录维护 增
+	/** 
+	 * 数据库已删  查询全部商品直接查全部订单记录 就行
+	 * 
+	 * 
+	 * 全部商品记录是商家可以查看所有顾客在该店铺购买的记录
+	 * 全部商品销售记录维护 增@RequestParam("name") String name,@RequestParam("model") String model,
+								@RequestParam("price") String price,@RequestParam("inventoryQuantity") String inventoryQuantity
+								ID  	TIME  	ALLS 
 	 * @return
 	 */
 	@RequestMapping("/SalesRecordWrite")
 	public String SalesRecordWrite(){
-		String name = "华硕笔记本";
-		String model = "飞行堡垒";
-		String price = "5511";
-		String inventoryQuantity = "1";
+		String alls = "11"; 
 		System.out.println("增加所有销售记录");
-		String str = salesRecordService.write(name,model,price,inventoryQuantity);
+		String str = salesRecordService.write(alls);
 		return str;
 	}
 	
-	/**
+	/**@RequestParam("id") String id
+	
 	 * 全部商品销售记录维护 删
 	 * @return
 	 */
 	@RequestMapping("/SalesRecordDelete")
 	public String SalesRecordDelete(){
-		String id = "7";
+		String id = "3";
 		System.out.println("删除所有销售记录");
 		String str = salesRecordService.delete(id);
 		return str;
 	}
 	
-	/**
+	/**@RequestParam("name") String name,@RequestParam("model") String model,
+									@RequestParam("price") String price,@RequestParam("inventoryQuantity") String inventoryQuantity,
+									@RequestParam("id") String id
 	 * 全部商品销售记录维护 改
+	 * 时间不可变
 	 * @return
 	 */
 	@RequestMapping("/SalesRecordModify")
+	
 	public String SalesRecordModify(){
-		String name = "小米笔记本";
-		String model = "Air";
-		String price = "5655";
-		String inventoryQuantity = "75";
-		String id = "7";
+		String alls = "12";
+		String id = "3";
 		System.out.println("修改所有销售记录");
-		String str = salesRecordService.modify(name,model,price,inventoryQuantity,id);
+		String str = salesRecordService.modify(alls,id);
 		return str;
 	}
 	

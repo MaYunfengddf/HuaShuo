@@ -3,8 +3,8 @@
 
 <mapper namespace="com.huashuo.mapper.CustomerInputMapper">
 	<insert id="insert" parameterType="com.huashuo.mapper.CustomerInputDto" >
-		INSERT INTO HuaShuoCustomerInquiry (id, name,purchaseQuantity,purchasePrice,purchaseModel)
-		VALUES (#{id},#{name},#{purchaseQuantity},#{purchasePrice},#{purchaseModel});
+		INSERT INTO HuaShuoCustomerInquiry (id,accounta,name)
+		VALUES (#{id},#{accounta},#{name});
     </insert> 
     
     <delete id="delete" parameterType="com.huashuo.mapper.CustomerInputDto" >
@@ -13,14 +13,30 @@
     
     <update  id="update" parameterType="com.huashuo.mapper.CustomerInputDto" >
     	UPDATE HuaShuoCustomerInquiry  SET
-    	name= #{name},
-    	purchaseQuantity= #{purchaseQuantity},
-    	purchasePrice= #{purchasePrice},
-    	purchaseModel= #{purchaseModel} 
+    	<if test="name != null and name != ''">
+            name= #{name},
+        </if>
+        <if test="accounta != null and accounta != ''">
+            accounta= #{accounta}
+        </if>
     	WHERE ID= #{id};
     </update>
     
-	<select id="findAll" resultType="com.huashuo.mapper.CustomerInputDto">
-       	SELECT * FROM  HuaShuoCustomerInquiry 
+    <select id="findAll" resultType="com.huashuo.mapper.CustomerInputDto">
+       	SELECT * FROM HuaShuoCustomerInquiry;
+    </select>
+    
+	<select id="findAll2" resultType="com.huashuo.mapper.CustomerInputDto">
+       	SELECT * FROM HuaShuoCustomerInquiry 	WHERE accounta LIKE '%${accounta}%';
+    </select>
+    
+    <select id="findAll3" resultType="com.huashuo.mapper.CustomerInputDto">
+       	select c.id,c.accounta,c.name as aaa ,
+				a.id,a.accountc, a.time, a.key,
+				b.id,b.name,b.model,b.colour,b.size,b.price,b.images,b.quantity,b.type,b.processor,b.memory,b.harddisk
+
+                from HuaShuoCustomerInquiry c
+				left join HuaShuoOrderQuery a on c.accounta= a.accountc
+				left join HUASHUOALLGOODS b on a.key= b.id
     </select>
 </mapper>

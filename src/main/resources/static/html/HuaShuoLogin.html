@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<meta charset="utf-8">
+		<title>华硕登录系统</title>
+		<link rel="stylesheet" href="../bootstrap-3.4.1/css/bootstrap.min.css"><!-- 框架 -->
+		<script src="../js/jquery-3.6.0.min.js"></script><!-- 基础包 -->
+		<script src="../bootstrap-3.4.1/js/bootstrap.min.js"></script>
+		<script src="../js/vue.min.js"></script><!-- vue发送请求包 -->
+		<script src="../js/vue-resource.min.js"></script><!-- vue发送请求包 -->
+		<!-- <script src="../js/axios.min.js"></script> -->
+		<script src="../js/rootPath.js"></script>
+		<script src="../js/huaShuoLogin.js"></script>
+	</head>
+	<body>
+		<div style="height:100px"></div>
+		<div class="col-xs-2"></div>
+		<div class="panel panel-default col-xs-8" id="app">
+			<div class="panel-body">
+				<p >{{ message }}</p>
+				<br>
+				<form class="bs-example bs-example-form" role="form" id="login" name="login"> 
+					
+					<div class="input-group">
+						<span class="input-group-addon">账号</span>
+						<input type="text" class="form-control" name="account" v-model="account">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">密码</span>
+						<input type="password" class="form-control" name="password" v-model="password">
+					</div>
+					<br>
+					<span class="col-xs-2"></span>
+					<button type="button" class="btn btn-primary col-xs-2" v-on:click="login">提交</button>
+					<span class="col-xs-4"></span>
+					<button type="button" class="btn btn-info col-xs-2" v-on:click="regis">注册</button>
+					
+				</form>
+			</div>
+		</div>
+		
+	</body>
+</html>

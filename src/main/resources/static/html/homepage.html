@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>华硕商城首页</title>
+		<link rel="stylesheet" href="../bootstrap-3.4.1/css/bootstrap.min.css">
+		<script src="../js/jquery-3.6.0.min.js"></script>
+		<script src="../bootstrap-3.4.1/js/bootstrap.min.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script src="../js/vue-resource.min.js"></script>
+		<script src="../js/rootPath.js"></script>
+		<script src="../js/homepage.js"></script>
+		<link rel="stylesheet" href="../css/homepage.css">
+	</head>
+	<body>
+		<div id="app" class="col-md-12">
+			<!-- http://localhost:8080/html/homepage.html -->
+			<div class="nav">
+				 <div class="warp">
+					  <ul class="nav_ul1">
+						<li><a href="../html/new_file.html" target="_blank"><i class="iconfont">&#xe6d3;</i> 华硕首页</a></li>
+						<li><a href="../html/manage.html"target="_blank"><i class="iconfont">&#xe6d3;</i> 华硕维护</a></li>
+					  </ul>
+					
+					  <ul class="nav_ul2">
+						  
+						<li><a href="../html/HuaShuoLogin.html">登录</a><span>|</span></li>
+						<li><a href="../html/orderQuery.html" target="_blank">我的订单</a><span>|</span></li>
+						<li><a href="../html/customerQuery.html" target="_blank">我的信息</a><span>|</span></li>
+						<li><a href="../html/ShoppingCat.html" target="_blank">购物车</a><span>|</span></li>
+						<li><a href="../html/addressQuery.html" target="_blank">我的地址</a><span>|</span></li>
+						<li><a href="../html/AllGoodsQuery.html" target="_blank">筛选</a><span>|</span></li>
+					  </ul>
+				 </div>
+			</div>
+			
+			<!--搜索框开始-->
+			  <div class="search">
+				  <div class="warp">
+					<table border="0">
+						<tr>
+							<td width="400"><img src="../images/huashuo09.png" width="210px" height="85px"/></td>
+					  
+							<td width="400"><p class="p1"> 主页 推荐 </p></td>
+							  
+							<td width="500">
+								<div class="search_div">
+							 
+									<input type="text" class="search_text" name="query"v-model="query"/>
+									
+									<input type="button" value="搜索"  class="search_but" v-on:click="input"/>
+									
+								</div>
+							</td>
+						</tr>
+					</table>
+				  </div>
+			  </div>
+			  
+			<!-- 循环播放图片 -->
+			<div id="photo-list"> 
+				<ul id="scroll">    
+					<a href="#"><img src="../images/huashuo01.jpg" width="100%" height="400px" alt=""/></a>
+				</ul>    
+			</div>
+			
+			<br>
+			
+			<!-- 商品 -->
+			<table border="1">
+			<tr>
+				<td>
+				
+					<template v-for="site in sites">
+						<div class="img col-xs-6 col-sm-4 col-md-3 " style="height: 280px;">
+							<a target="_blank" v-on:click="money(site.id)">
+							  <img v-bind:src="site.images" alt="图片文本描述" width="300" height="200">
+							</a>
+							<div class="desc">
+								{{ site.name }}
+								{{ site.model }}<br>
+								价格:{{ site.price }}
+							</div>
+						</div>
+					</template>
+				</td>
+			</tr>
+			</table>
+			<br><br><br>
+			<div class="col-md-13">
+				<p class="p2">我是有底线的</p>
+			</div>
+		</div>
+	</body>
+	
+	<script src="../js/homepage.js"></script>
+	
+</html>

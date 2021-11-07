@@ -3,9 +3,9 @@ package com.huashuo.mapper;
 public class CommodityDto {
 	private String id;//编号
 	private String name;//名字
+	private String images;//名字
 	private String model;//型号
 	private String price;//价格
-	private String inventoryQuantity;//总库存
 	public String getId() {
 		return id;
 	}
@@ -17,6 +17,12 @@ public class CommodityDto {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getImages() {
+		return images;
+	}
+	public void setImages(String images) {
+		this.images = images;
 	}
 	public String getModel() {
 		return model;
@@ -30,14 +36,8 @@ public class CommodityDto {
 	public void setPrice(String price) {
 		this.price = price;
 	}
-	public String getInventoryQuantity() {
-		return inventoryQuantity;
-	}
-	public void setInventoryQuantity(String inventoryQuantity) {
-		this.inventoryQuantity = inventoryQuantity;
-	}
 	@Override
 	public String toString() {
-		return "{id = " + this.id + ", name = " + this.name + ", model = " + this.model + ", price = " + this.price +", inventoryQuantity = " + this.inventoryQuantity +"}\r\n";
+		return "{id = " + this.id + ", name = " + this.name +  ", images = " + this.images +", model = " + this.model + ", price = " + this.price +"}\r\n<br>";
 	}
 }

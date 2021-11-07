@@ -13,5 +13,5 @@ public interface ShoppingCartMapper {
 	//购物车 改
 	public int update(ShoppingCartDto shoppingCart);
 	//购物车 查
-	public List<ShoppingCartDto> findAll();
+	public List<ShoppingCartDto> findAll(ShoppingCartDto shoppingCart);
 }

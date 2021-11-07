@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>客户操作页面 增删收件地址</title>
+		<link rel="stylesheet" href="../bootstrap-3.4.1/css/bootstrap.min.css">
+		<script src="../js/jquery-3.6.0.min.js"></script>
+		<script src="../bootstrap-3.4.1/js/bootstrap.min.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script src="../js/vue-resource.min.js"></script>
+		<script src="../js/rootPath.js"></script>
+		<script src="../js/addAddress.js"></script>
+		<link rel="stylesheet" href="../css/addAddress.css">
+	</head>
+	<body>
+		
+		<div id="app">
+			<div style="height:100px"></div>
+			<div class="col-xs-2"></div>
+				<div class="panel-body">
+					<p >{{ message }}</p>
+					<br>
+					<form class="bs-example bs-example-form" role="form" id="login" name="login">
+						<div class="input-group">
+							<span class="input-group-addon">收件人手机号:</span>
+							<input type="text" class="form-control" name="phone" v-model="phone">
+						</div>
+						<br>
+						<div class="input-group">
+							<span class="input-group-addon">收件人地址:</span>
+							<input type="text" class="form-control" name="address" v-model="address">
+						</div>
+						<br>
+						<div class="input-group">
+							<span class="input-group-addon">收件人名字:</span>
+							<input type="text" class="form-control" name="name" v-model="name">
+						</div>
+						<br>
+						<span class="col-xs-10"></span>
+						<button type="button" class="btn btn-primary col-xs-2" v-on:click="login">添加新地址</button>
+					</form>
+				</div>
+		<!--the-address-->
+		    <div class="adr-tent" id="vue-address">
+		        <table class="adr-table">
+		            <thead class="table-thead">
+		                <tr>
+		                    <th rowspan="1" class="thh" width="160">
+		                        <span class="tn">收货人</span>
+		                    </th>
+		                    <th rowspan="1" class="thh" width="480">
+		                        <span class="tn">所在地区</span>
+		                    </th>
+		                    <th rowspan="1" class="thh" width="200">
+		                        <span class="tn">电话/手机</span>
+		                    </th>
+		                    <th rowspan="1" class="thh" width="200">
+		                        <span class="tn">操作</span>
+		                    </th>
+		                    <th rowspan="1" class="thh" width="260">
+		                        <span class="tn">设置</span>
+		                    </th>
+		                </tr>
+		            </thead>
+				</table>
+				<div  v-for="(v,i) in sites">
+					<table border="1">
+						<tr class="item" >
+							<td class="tdd" width="160">
+								{{v.name}}
+							</td>
+							<td class="tdd" width="480">
+								{{v.address}}
+							</td>
+							<td class="tdd" width="200"> 
+								{{v.phone}}
+							</td>
+							<td class="tdd" width="200">
+								<span class="ti">
+									 <div class="handle">
+										<a v-on:click="modify(v.id)">修改</a>
+										<i class="line">|</i>
+										<a v-on:click="delete(v.id)">删除</a>
+									</div>
+								</span>
+							</td>
+							<td class="tdd" width="260">
+								<span class="ti">
+									 <em class="set-def cur" v-if="v.isDefault">默认地址</em>
+									 <em class="set-def" v-else @click="setDefault(i,v.id)">设为默认</em>
+								</span>
+							</td>
+						</tr>
+					</table>
+				</div>
+		    </div>
+		</div>
+	</body>
+</html>

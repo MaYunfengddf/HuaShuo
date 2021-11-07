@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>测试</title>
+		<link rel="stylesheet" href="../bootstrap-3.4.1/css/bootstrap.min.css"><!-- 框架 -->
+		<script src="../js/jquery-3.6.0.min.js"></script><!-- 基础包 -->
+		<script src="../bootstrap-3.4.1/js/bootstrap.min.js"></script>
+		<script src="../js/vue.min.js"></script><!-- vue发送请求包 -->
+		<script src="../js/vue-resource.min.js"></script><!-- vue发送请求包 -->
+		<!-- <script src="../js/axios.min.js"></script> -->
+		<script src="../js/vue-router.js"></script><!-- 带参数打开新页面 -->
+		<script src="../js/new.js"></script>
+	</head>
+	<body>
+		<div id="app" class="col-md-12">
+			<table border="1">
+			<tr>
+				<td>
+				
+					<template v-for="site in sites">
+						<div class="img col-xs-6 col-sm-4 col-md-3 " style="height: 280px;">
+							<a target="_blank" v-on:click="money(site.id)">
+							  <img v-bind:src="site.images" alt="图片文本描述" width="300" height="200">
+							</a>
+							<div class="desc">
+								{{ site.name }}
+								{{ site.model }}<br>
+								价格:{{ site.price }}
+							</div>
+						</div>
+					</template>
+				</td>
+			</tr>
+			</table>
+		</div>
+	</body>
+</html>

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +24,18 @@ public class SalesRecordServiceImpl implements SalesRecordService {
 	@Autowired
 	public SalesRecordMapper salesRecordMapper;
 	
-	public String write(String name,String model,String price,String quantity) {
-		ShoppingCartServiceImpl shoppingCartServiceImpl = new ShoppingCartServiceImpl();
-		String id = shoppingCartServiceImpl.idPrice();
+	public String write(String alls) {
+		//自动获取数据库id
+		SalesRecordServiceImpl salesRecordServiceImpl = new SalesRecordServiceImpl();
+		String id = salesRecordServiceImpl.idPrice();
+		//自动获取当前时间
+		String time = salesRecordServiceImpl.time();
+      
 		
 		SalesRecordDto salesRecord = new SalesRecordDto();
 		salesRecord.setId(id);
-		salesRecord.setName(name);
-		salesRecord.setModel(model);
-		salesRecord.setPrice(price);
-		salesRecord.setQuantity(quantity);
+		salesRecord.setTime(time);
+		salesRecord.setAlls(alls);
 		
 		int cart = salesRecordMapper.insert(salesRecord);
 		System.out.println(cart);
@@ -47,12 +51,9 @@ public class SalesRecordServiceImpl implements SalesRecordService {
 		return "删除成功:" + cart + "条信息";
 	}
 	
-	public String modify(String name,String model,String price,String quantity,String id) {
+	public String modify(String alls,String id) {
 		SalesRecordDto salesRecord = new SalesRecordDto();
-		salesRecord.setName(name);
-		salesRecord.setModel(model);
-		salesRecord.setPrice(price);
-		salesRecord.setQuantity(quantity);
+		salesRecord.setAlls(alls);
 		salesRecord.setId(id);
 		
 		int cart = salesRecordMapper.update(salesRecord);
@@ -69,26 +70,34 @@ public class SalesRecordServiceImpl implements SalesRecordService {
 	}
 	
 	//获取ID并实现自增
-			public String idPrice() {
-				try {
-					String id = "";
-					Class.forName(DRIVER_CLASS);
-					Connection conn = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
-					Statement sta = conn.createStatement();
-					ResultSet res = sta.executeQuery("select * from HUASHUOSHOPPINGCART order by id");
+	public String idPrice() {
+		try {
+			String id = "";
+			Class.forName(DRIVER_CLASS);
+			Connection conn = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
+			Statement sta = conn.createStatement();
+			ResultSet res = sta.executeQuery("select * from HUASHUOSALESRECORD  order by id");
 
-					while(res.next()) {
-						id =  res.getString("id");
-					}
-					int id2 = Integer.valueOf(id);
-					int id3 = ++id2;
-					
-					String id4 = String.valueOf(id3);
-					
-					return id4;
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				return null;
+			while(res.next()) {
+				id =  res.getString("id");
 			}
+			int id2 = Integer.valueOf(id);
+			int id3 = ++id2;
+			
+			String id4 = String.valueOf(id3);
+			
+			return id4;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	//自动获取当前时间
+	public String time() {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		String time = df.format(new Date());
+		 System.out.println("自动获取当前时间" + time);// new Date()为获取当前系统时间
+		 return time;
+	}
+	
 }

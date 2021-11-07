@@ -3,24 +3,25 @@
 
 <mapper namespace="com.huashuo.mapper.SalesRecordMapper">
 	<insert id="insert" parameterType="com.huashuo.mapper.SalesRecordDto" >
-		INSERT INTO HUASHUOSHOPPINGCART (id, name,model,price,quantity)
-		VALUES (#{id},#{name},#{model},#{price},#{quantity});
+		INSERT INTO HUASHUOSALESRECORD  (id, time,alls)
+		VALUES (#{id},#{time},#{alls});
     </insert> 
     
     <delete id="delete" parameterType="com.huashuo.mapper.SalesRecordDto" >
-    	DELETE FROM HUASHUOSHOPPINGCART  WHERE ID = #{id};
+    	DELETE FROM HUASHUOSALESRECORD   WHERE ID = #{id};
     </delete>
     
     <update  id="update" parameterType="com.huashuo.mapper.SalesRecordDto" >
-    	UPDATE HUASHUOSHOPPINGCART  SET
-    	name= #{name},
-    	model= #{model},
-    	price= #{price},
-    	quantity= #{quantity} 
+    	UPDATE HUASHUOSALESRECORD   SET
+    	alls= #{alls}
     	WHERE ID= #{id};
     </update>
     
 	<select id="findAll" resultType="com.huashuo.mapper.SalesRecordDto">
-       	SELECT * FROM  HUASHUOSHOPPINGCART 
+       	  select  a.id, a.time, a.Alls,
+				b.id,b.name,b.model,b.colour,b.size,b.price,b.images,b.quantity,b.type,b.processor,b.memory,b.harddisk
+
+				from HUASHUOSALESRECORD  a
+				left join HUASHUOALLGOODS b on a.Alls= b.id;
     </select>
 </mapper>

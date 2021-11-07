@@ -22,7 +22,8 @@ public class AllGoodsServiceImpl implements AllGoodsService {
 	@Autowired
 	public AllGoodsMapper allGoodsMapper;
 	
-	public String write(String name,String model,String price,String inventoryquantity) {
+	public boolean write(String name,String model,String colour,String size,String price,String images,String quantity,
+						String type,String processor,String memory,String harddisk) {
 		AllGoodsServiceImpl allGoodsServiceImpl = new AllGoodsServiceImpl();
 		String id = allGoodsServiceImpl.idPrice();
 		
@@ -30,42 +31,65 @@ public class AllGoodsServiceImpl implements AllGoodsService {
 		allGoods.setId(id);
 		allGoods.setName(name);
 		allGoods.setModel(model);
+		allGoods.setColour(colour);
+		allGoods.setSize(size);
 		allGoods.setPrice(price);
-		allGoods.setInventoryquantity(inventoryquantity);
+		allGoods.setImages(images);
+		allGoods.setQuantity(quantity);
+		allGoods.setType(type);
+		allGoods.setProcessor(processor);
+		allGoods.setMemory(memory);
+		allGoods.setHarddisk(harddisk);
 		
 		int cart = allGoodsMapper.insert(allGoods);
 		System.out.println(cart);
-		return "添加成功:" + cart + "条信息";
+		
+		return true;
 	}
 	
-	public String delete(String id) {
+	public boolean delete(String id) {
 		AllGoodsDto allGoods = new AllGoodsDto();
 		allGoods.setId(id);
 		
 		int cart = allGoodsMapper.delete(allGoods);
 		System.out.println(cart);
-		return "删除成功:" + cart + "条信息";
+		return true;
 	}
 	
-	public String modify(String name,String model,String price,String inventoryquantity,String id) {
+	public boolean modify(String name,String model,String colour,String size,String price,String images,String quantity,
+						String type,String processor,String memory,String harddisk,String id) {
 		AllGoodsDto allGoods = new AllGoodsDto();
 		allGoods.setName(name);
 		allGoods.setModel(model);
+		allGoods.setColour(colour);
+		allGoods.setSize(size);
 		allGoods.setPrice(price);
-		allGoods.setInventoryquantity(inventoryquantity);
+		allGoods.setImages(images);
+		allGoods.setQuantity(quantity);
+		allGoods.setType(type);
+		allGoods.setProcessor(processor);
+		allGoods.setMemory(memory);
+		allGoods.setHarddisk(harddisk);
 		allGoods.setId(id);
-		
+		System.out.println("实现类" + allGoods);
 		int cart = allGoodsMapper.update(allGoods);
 		System.out.println(cart);
-		return "修改成功:" + cart + "条信息";
+		return true;
 	}
 	
-	public String inquiry() {
+	public List<AllGoodsDto> inquiry() {
 		List<AllGoodsDto> all = allGoodsMapper.findAll();
 		System.out.println(all);
+		return all;
+	}
+	
+	public List<AllGoodsDto> inquiry(String id) {
+		AllGoodsDto allGoods = new AllGoodsDto();
+		allGoods.setId(id);
 		
-		String str = String.valueOf(all);
-		return str;
+		List<AllGoodsDto> all = allGoodsMapper.findAll2(allGoods);
+		System.out.println(all);
+		return all;
 	}
 	
 	//获取ID并实现自增
@@ -75,7 +99,7 @@ public class AllGoodsServiceImpl implements AllGoodsService {
 					Class.forName(DRIVER_CLASS);
 					Connection conn = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
 					Statement sta = conn.createStatement();
-					ResultSet res = sta.executeQuery("select * from HUASHUOSHOPPINGCART order by id");
+					ResultSet res = sta.executeQuery("select * from HUASHUOALLGOODS order by id");
 
 					while(res.next()) {
 						id =  res.getString("id");
